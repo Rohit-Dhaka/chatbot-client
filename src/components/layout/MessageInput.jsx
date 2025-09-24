@@ -1,0 +1,52 @@
+import React, { useState } from "react";
+import { UseMycontext } from "../../context/context";
+import { ArrowUp } from "lucide-react";
+
+const MessageInput = () => {
+  const { addchat } = UseMycontext();
+  const [formdata, setFormdata] = useState({ message: "" });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      addchat(formdata);
+      setFormdata({ message: "" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
+  return (
+    <div className="fixed bottom-4 left-0 right-0 flex justify-center z-50">
+      <form
+        onSubmit={handleSubmit}
+        className="w-[70%] flex bg-[#202020] border shadow-input border-gray-300 p-2 rounded-full"
+      >
+        <input
+          type="text"
+          placeholder="Enter your text"
+          className="w-full bg-transparent outline-none text-white ps-4"
+          value={formdata.message}
+          onChange={(e) =>
+            setFormdata({ ...formdata, message: e.target.value })
+          }
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          type="submit"
+          className="bg-white rounded-full p-2 cursor-pointer shadow hover:bg-gray-100 ml-2"
+        >
+          <ArrowUp className="w-5 h-5 text-black" />
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default MessageInput;
