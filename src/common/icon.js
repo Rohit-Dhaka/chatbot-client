@@ -15,7 +15,7 @@ export const Logo = () =>{
 
 export const MiniLogo = () =>{
     return(
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15.6601 19.8L9.20679 16V9.33333C9.20679 6.38667 11.6388 4 14.6415 4C16.5041 4 18.1481 4.92 19.1281 6.32133" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M12.8 25.5734C13.3012 26.3224 13.9798 26.9359 14.7754 27.3593C15.5709 27.7827 16.4588 28.0028 17.36 28.0001C20.36 28.0001 22.7947 25.6134 22.7947 22.6667V16.0001L16.2134 12.1294" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M12.6028 17.9999V10.2266L18.4855 6.89325C21.0855 5.41991 24.4095 6.29325 25.9108 8.84391C26.3706 9.6215 26.6215 10.5047 26.6393 11.4079C26.657 12.3111 26.441 13.2035 26.0121 13.9986" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

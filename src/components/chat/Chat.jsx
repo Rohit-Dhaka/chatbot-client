@@ -4,10 +4,10 @@ import MessageInput from '../layout/MessageInput'
 
 const chat = () => {
   return (
-    <div>
+    <div className='w-[80%] mx-auto'>
         
         <ChatWindow/>
-        <MessageInput/>
+        {/* <MessageInput/> */}
     </div>
   )
 }

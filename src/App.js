@@ -15,7 +15,8 @@ function App() {
 
   return (
     <>
-    <Navbar/>
+  
+    {/* <Navbar/> */}
     {/* <Signup/> */}
     {/* <Login/> */}
     {/* <ChatWindow/> */}

@@ -23,10 +23,10 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="fixed bottom-4 left-0 right-0 flex justify-center z-50">
+    <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        className="w-[70%] flex bg-[#202020] border shadow-input border-gray-300 p-2 rounded-full"
+        className=" flex bg-[#202020] border shadow-input border-gray-300 p-2 rounded-full"
       >
         <input
           type="text"
