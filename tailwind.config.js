@@ -1,22 +1,26 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-   plugins: [
-    require('tailwind-scrollbar-hide')
-  ],
-    content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  plugins: [require("tailwind-scrollbar-hide")],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      container:{
-        center:"true",
-        padding:"12px"
+      container: {
+        center: "true",
+        padding: "12px",
       },
-      boxShadow:{
-          input: '0px 30px 20px 10px rgba(40,39,39,0.9)',
+      boxShadow: {
+        input: "0px 30px 20px 10px rgba(40,39,39,0.9)",
+      },
+      animation: {
+        bar: "progressbar 2s linear infinite",
+      },
+      keyframes: {
+        progressbar: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
       },
     },
   },
   plugins: [],
-}
-
+};

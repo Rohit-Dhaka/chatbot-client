@@ -1,24 +1,54 @@
 import React, { useState } from 'react'
 import { UseMycontext } from '../../context/context'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
   const { login } = UseMycontext()
   const [formdata, setFormdata] = useState({ email: "", password: "" })
+   const [message , setMesage]= useState("")
+  const [bar , setBar] = useState(false)
+  const navigate = useNavigate();
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      login(formdata)
-      setFormdata({ email: "", password: "" })
+      
+       const res = await login(formdata)
+      setMesage(res.message)
+      setBar(true)
+      
+      setTimeout(() => {
+        navigate('/')
+        setMesage("")        
+        setBar(false)
+        setFormdata({ name: "", email: "", password: "" })
+        
+      }, 2000);
     }
     catch (error) {
       console.log(error)
+       setMesage(error.message)
+      setBar(true)
+
+      setTimeout(() => {
+
+        
+      }, 2000);
     }
   }
 
   return (
-    <section className="h-screen flex items-center justify-center bg-gray-50">
+    <section className="h-screen flex items-center justify-center bg-gray-50 relative">
+        {message && (
+         <div className=" absolute top-10 left-[50%] translate-x-[-50%] bg-white  shadow-2xl py-2 px-3 rounded-lg flex flex-col  gap-1">
+        <h6>{message}</h6>
+        {bar && (
+          <span className=' inline-block h-[3px]  bg-black rounded-lg animate-bar'></span>
+        )}
+      </div>
+
+      )}
       <div className="w-full max-w-md ">
         <h2 className="text-[36px] font-semibold text-center text-black mb-6">
           Login

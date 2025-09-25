@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react';
-import { UseMycontext } from '../../context/context';
-import MessageInput from './MessageInput';
+import React, { useEffect, useRef } from "react";
+import { UseMycontext } from "../../context/context";
+import MessageInput from "./MessageInput";
 
 const ChatWindow = () => {
   const { getchat, chats } = UseMycontext();
-  console.log("chats", chats);
+  const bottomRef = useRef(null);
 
   useEffect(() => {
     getchat();
-  }, []);
+  }, [chats]);
+
+  // Auto scroll to bottom when chats update
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chats]);
 
   return (
     <section className="h-[100vh] overflow-y-scroll lg:ms-[18%] ms-[5%] no-scrollbar">
@@ -28,23 +33,26 @@ const ChatWindow = () => {
               <div
                 key={i}
                 className={`flex mb-3 ${
-                  chat.sender === 'user' ? 'justify-end' : 'justify-start'
+                  chat.sender === "user" ? "justify-end" : "justify-start"
                 }`}
               >
                 <div
-                  className={`px-4 py-2 rounded-lg text-[16px] text-white ${
-                    chat.sender === 'user'
-                      ? 'bg-[#323232D9] text-right'
-                      : 'bg-[#1e1e1e] text-left'
+                  className={`px-4 py-3 rounded-2xl text-[16px] text-white ${
+                    chat.sender === "user"
+                      ? "bg-[#323232D9] text-right"
+                      : "bg-[#1e1e1e] text-left"
                   }`}
                 >
                   {chat.text}
                 </div>
               </div>
             ))}
-            
-            <div className=" fixed bottom-8 lg:w-[60%] w-[80%]">
-              <MessageInput />
+
+            {/* dummy div for auto scroll */}
+            <div ref={bottomRef} />
+
+            <div className="fixed bottom-8 lg:w-[60%] w-[80%]">
+              <MessageInput chats={chats} />
             </div>
           </div>
         )}

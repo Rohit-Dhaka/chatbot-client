@@ -4,8 +4,9 @@
   import { UseMycontext } from "../../context/context";
 
   const Sidebar = () => {
-    const { getuser, user } = UseMycontext();
+    const { getuser, user ,logout } = UseMycontext();
     const [show, setShow] = useState(false);
+    
 
     useEffect(() => {
       getuser();
@@ -24,7 +25,7 @@
           </div>
           <div className="pb-2  flex justify-center">
             {show ? (
-              <button className="flex  gap-4 text-black bg-white py-2 px-4 rounded-[8px] cursor-pointer ">
+              <button className="flex  gap-4 text-black bg-white py-2 px-4 rounded-[8px] cursor-pointer " onClick={logout}>
                 <LogOut /> Logout
               </button>
             

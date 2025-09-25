@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UseMycontext } from "../../context/context";
 import { ArrowUp } from "lucide-react";
 
 const MessageInput = () => {
-  const { addchat } = UseMycontext();
+  const { addchat  } = UseMycontext();
   const [formdata, setFormdata] = useState({ message: "" });
 
+
+
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
       addchat(formdata);
       setFormdata({ message: "" });
+      
+     
     } catch (error) {
       console.log(error);
     }

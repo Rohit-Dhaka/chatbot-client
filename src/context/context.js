@@ -25,6 +25,7 @@ export const ContextProvider = ({children}) =>{
         try{
             const response = await api.post("auth/signup" , data)
             console.log(response)
+            return response.data;
         }
         catch(error){
             console.log(error)            
@@ -36,6 +37,7 @@ export const ContextProvider = ({children}) =>{
             console.log(response)
             const token = response.data.token 
             localStorage.setItem('token' ,token)
+            return response.data;
         }
         catch(error){
             console.log(error)
