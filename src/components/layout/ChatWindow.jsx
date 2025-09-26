@@ -10,7 +10,7 @@ const ChatWindow = () => {
     getchat();
   }, [chats]);
 
-  // Auto scroll to bottom when chats update
+  
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chats]);
@@ -20,10 +20,10 @@ const ChatWindow = () => {
       <div className="container py-4 pb-24 pt-20">
         {chats.length === 0 ? (
           <div className="w-full h-[80vh] flex flex-col justify-center items-center">
-            <h4 className="text-white font-semibold text-[32px] pb-[32px]">
+            <h4 className="text-white font-semibold text-[32px] pb-[32px] text-center">
               Ready when you are.
             </h4>
-            <div className="w-[70%]">
+            <div className="lg:w-[70%] w-full">
               <MessageInput />
             </div>
           </div>
