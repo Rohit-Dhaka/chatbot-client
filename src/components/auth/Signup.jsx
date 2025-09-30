@@ -39,7 +39,7 @@ const Signup = () => {
 
   return (
     <section className="h-screen flex items-center justify-center bg-gray-50 relative">
-      <div className="container">
+      <div className="container flex items-center justify-center">
         {message && (
          <div className=" absolute top-10 left-[50%] translate-x-[-50%] bg-white  shadow-2xl py-2 px-3 rounded-lg flex flex-col  gap-1">
         <h6>{message}</h6>

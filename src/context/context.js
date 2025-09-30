@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 const Mycontext = createContext(null);
 
 export const ContextProvider = ({children}) =>{
-    const [isLogin  , setIsLogin] = useState(false)
-    const [chats , setChats] = useState([])
-    const [ user, setUser] = useState([])
+    const [isLogin, setIsLogin] = useState(false)
+    const [chats, setChats] = useState([])
+    const [user, setUser] = useState([])
+    const [show, setShow] = useState(false);
 
     useEffect(() =>{
         const token = localStorage.getItem('token')
@@ -62,7 +63,7 @@ export const ContextProvider = ({children}) =>{
         try{
             const response = await api.post('chat/chatstart' , data  , {
                 headers:{
-                    Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`
                 }
             })
             console.log(response)
@@ -94,7 +95,7 @@ export const ContextProvider = ({children}) =>{
 
 
     return(
-        <Mycontext.Provider value={{addchat , signup , login , logout , isLogin , getchat,chats  , getuser ,user }}>
+        <Mycontext.Provider value={{addchat , signup , login , logout , isLogin , getchat,chats  , getuser ,user  , show, setShow }}>
             {children}
         </Mycontext.Provider>
     )

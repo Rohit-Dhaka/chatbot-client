@@ -1,22 +1,43 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { UseMycontext } from "../../context/context";
 import MessageInput from "./MessageInput";
 
 const ChatWindow = () => {
   const { getchat, chats } = UseMycontext();
   const bottomRef = useRef(null);
+  const containerRef = useRef(null);
+  const [autoScroll, setAutoScroll] = useState(true);
 
   useEffect(() => {
     getchat();
   }, [chats]);
 
   
+  const handleScroll = () => {
+    if (!containerRef.current) return;
+    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+
+    
+    if (scrollHeight - scrollTop - clientHeight < 50) {
+      setAutoScroll(true);
+    } else {
+      setAutoScroll(false);
+    }
+  };
+
+  
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chats]);
+    if (autoScroll) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chats, autoScroll]);
 
   return (
-    <section className="h-[100vh] overflow-y-scroll lg:ms-[18%] ms-[5%] no-scrollbar">
+    <section
+      ref={containerRef}
+      onScroll={handleScroll}
+      className="h-[100vh] overflow-y-scroll lg:ms-[18%] no-scrollbar"
+    >
       <div className="container py-4 pb-24 pt-20">
         {chats.length === 0 ? (
           <div className="w-full h-[80vh] flex flex-col justify-center items-center">
@@ -51,7 +72,7 @@ const ChatWindow = () => {
             {/* dummy div for auto scroll */}
             <div ref={bottomRef} />
 
-            <div className="fixed bottom-8 lg:w-[60%] w-[80%]">
+            <div className="fixed bottom-8 lg:w-[60%] max-sm:left-0 max-lg:right-0 max-sm:px-3">
               <MessageInput chats={chats} />
             </div>
           </div>
